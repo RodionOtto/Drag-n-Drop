@@ -1,8 +1,10 @@
-const item = document.querySelector(".item");
+const items = document.querySelectorAll(".item");
 const placeholders = document.querySelectorAll(".placeholder");
 
-item.addEventListener("dragstart", dragstart);
-item.addEventListener("dragend", dragend);
+for (const item of items) {
+  item.addEventListener("dragstart", dragstart);
+  item.addEventListener("dragend", dragend);
+}
 
 for (const placeholder of placeholders) {
   placeholder.addEventListener("dragover", dragover);
@@ -33,6 +35,7 @@ function dragleave(event) {
 }
 
 function dragdrop(event) {
+  const { children } = event.target.previousElementSibling;
   event.target.classList.remove("hovered");
-  event.target.append(item);
+  event.target.append(children[0]);
 }
